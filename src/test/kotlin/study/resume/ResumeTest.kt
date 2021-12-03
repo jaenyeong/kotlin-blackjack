@@ -38,7 +38,7 @@ internal class ResumeTest {
     }
 
     @Test
-    fun soft() {
+    fun softSkill() {
         val person = introduce {
             name("김재녕")
             company("HDJ")
@@ -50,7 +50,7 @@ internal class ResumeTest {
     }
 
     @Test
-    fun hard() {
+    fun hardSkill() {
         val person = introduce {
             name("김재녕")
             company("HDJ")
@@ -60,6 +60,31 @@ internal class ResumeTest {
                 hard("Kotlin")
             }
         }
-        assertThat(person.skills).contains(Hard("Kotlin"))
+        assertThat(person.skills).contains(
+            Soft("A passion for problem solving"),
+            Soft("Good communication skills"),
+            Hard("Kotlin")
+        )
+    }
+
+    @Test
+    fun languages() {
+        val person = introduce {
+            name("김재녕")
+            company("HDJ")
+            skills {
+                soft("A passion for problem solving")
+                soft("Good communication skills")
+                hard("Kotlin")
+            }
+            languages {
+                "Korean" level 5
+                "English" level 3
+            }
+        }
+        assertThat(person.languages).contains(
+            Language("Korean", 5),
+            Language("English", 3)
+        )
     }
 }
